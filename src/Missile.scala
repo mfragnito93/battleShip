@@ -48,10 +48,14 @@ class Missile (var cords: String, var player: Player){
           println("Coordinates are outside the game map")
         false
       } catch {
+        //try to find a better way to do this
         case ex: IllegalArgumentException =>
           println("The coordinates you have entered are illegal, must be in X,Y format")
           false
         case ex: NumberFormatException =>
+          println("The coordinates you have entered are illegal, must be in X,Y format")
+          false
+        case ex: ArrayIndexOutOfBoundsException =>
           println("The coordinates you have entered are illegal, must be in X,Y format")
           false
       }
