@@ -14,7 +14,7 @@ class Missile (var cords: String, var player: Player){
   this will need to be updated to check the 2D array
    */
 
-  def updateStatus(): Unit ={
+  def fireAt(game: Game): Unit ={
     if (mCords=="3,1") {
       println("Hit!")
       player.addHit()

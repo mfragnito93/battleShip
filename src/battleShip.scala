@@ -16,10 +16,14 @@ object battleShip {
     var valid = true
     var missileCords = new String
     var missile = new Missile("x,x",player)
-    var gameBoard = new GameBoard(10, 10)
+    var game = new Game(10, 10)
+
+    game.createFleetMap()
+    game.show("Fleet")
+
 
     for (i<-0 until 5) {
-      gameBoard.showGameBoard()
+      game.show("GameBoard")
       do {
         printf("Enter the X,Y attack coordinates: ")
         missileCords = scala.io.StdIn.readLine()
@@ -27,9 +31,8 @@ object battleShip {
         valid = missile.validateCords()
       } while (!valid)
       printf("Firing missile to location %s...\n", missileCords)
-      Thread.sleep(2000)
-      missile.updateStatus()
-      gameBoard.updateGameBoard(missile)
+      missile.fireAt(game)
+      game.updateGameBoard(missile)
     }
   }
 }
