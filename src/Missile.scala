@@ -18,12 +18,12 @@ class Missile (var cords: String, var player: Player){
     if (mCords=="3,1") {
       println("Hit!")
       player.addHit()
-      status = " X "
+      status = "  X "
     }
     else {
       println("Miss!")
       player.addMiss()
-      status = " O "
+      status = "  O "
     }
   }
   //will be used to return the result of the missile fired

@@ -5,8 +5,7 @@ import scala.io.StdIn.{readLine,readInt}
 
 object battleShip {
   def main(args:Array[String]): Unit ={
-
-    println("------WELCOME TO BATTLESHIP------")
+    println(Console.BOLD+Console.RED+"--------WELCOME TO BATTLESHIP--------")
     Thread.sleep(500)
 
     printf("Enter name to begin: ")
@@ -25,7 +24,7 @@ object battleShip {
     for (i<-0 until 5) {
       game.show("GameBoard")
       do {
-        printf("Enter the X,Y attack coordinates: ")
+        printf(Console.BOLD+Console.RED+"Enter the X,Y attack coordinates: ")
         missileCords = scala.io.StdIn.readLine()
         missile.setCords(missileCords)
         valid = missile.validateCords()
