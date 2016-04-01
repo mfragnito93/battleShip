@@ -19,6 +19,9 @@ class Game (var rows: Int, var columns: Int) {
   var mSubmarine = new Boat("Submarine", 3)
   var mCruiser = new Boat("Cruiser", 2)
   var mDestroyer = new Boat("Destroyer", 1)
+  val mFleet = Array(mAircraftCarrier, mBattleship, mSubmarine, mCruiser, mDestroyer)
+
+  var mPlayer = new Player ("CHANGE ME")
 
   for (i <- 0 until mRows) {
     for (j <- 0 until mCols) {
@@ -108,9 +111,7 @@ class Game (var rows: Int, var columns: Int) {
     var done = false
     var size = 0
 
-    val fleet = Array(mAircraftCarrier, mBattleship, mSubmarine, mCruiser, mDestroyer)
-
-    for (ship <- fleet) {
+    for (ship <- mFleet) {
       shipPlaced = false
 
       while (!shipPlaced) {
@@ -143,4 +144,33 @@ class Game (var rows: Int, var columns: Int) {
 
     }
   }
+
+  def setPlayer(player: Player): Unit ={
+    mPlayer=player
+  }
+
+  def fire(missile: Missile): Unit ={
+    var cords = missile.getCords()
+    var point = mFleetMap(cords(1))(cords(0))
+
+    if (point=="NA") {
+      mPlayer.addMiss()
+      missile.status = "  O "
+    }
+    else {
+      mPlayer.addHit()
+      point.asInstanceOf[Boat].hit()
+      point.asInstanceOf[Boat].showStatus()
+      missile.status = "  X "
+    }
+    updateGameBoard(missile)
+  }
+
+  def status():Int={
+    var status=0
+    for (ship<-mFleet)
+      status+=ship.getStatus()
+    status
+  }
+
 }

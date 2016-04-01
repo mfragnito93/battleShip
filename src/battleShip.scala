@@ -9,29 +9,38 @@ object battleShip {
     Thread.sleep(500)
 
     printf("Enter name to begin: ")
-    var name = scala.io.StdIn.readLine()
-    var player = new Player(name)
+
+    val name = scala.io.StdIn.readLine()
+    val player = new Player(name)
+    val missile = new Missile("x,x",player)
+    val game = new Game(10, 10)
 
     var valid = true
     var missileCords = new String
-    var missile = new Missile("x,x",player)
-    var game = new Game(10, 10)
 
+    game.setPlayer(player)
     game.createFleetMap()
-    game.show("Fleet")
+//    game.show("Fleet")
 
 
-    for (i<-0 until 5) {
+    while(game.status()>0) {
       game.show("GameBoard")
       do {
-        printf(Console.BOLD+Console.RED+"Enter the X,Y attack coordinates: ")
+        printf(Console.BOLD+Console.YELLOW+"Enter the X,Y attack coordinates: ")
         missileCords = scala.io.StdIn.readLine()
         missile.setCords(missileCords)
         valid = missile.validateCords()
       } while (!valid)
-      printf("Firing missile to location %s...\n", missileCords)
-      missile.fireAt(game)
-      game.updateGameBoard(missile)
+
+//      printf("Firing missile to location %s...\n", missileCords)
+      game.fire(missile)
     }
+    println("---GAME OVER---")
+    game.show("Fleet")
+    Thread.sleep(500)
+    println("NAME: "+player.getName())
+    println("HITS: "+player.getHits())
+    println("MISSES: "+player.getMisses())
+    println("HIT %: "+player.getHitPercentage())
   }
 }

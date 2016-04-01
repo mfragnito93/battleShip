@@ -21,13 +21,12 @@ class Boat (var ship: String, var size: Int) {
     mStatus-=1
   }
 
-  def getStatus(): String ={
-    if (mStatus==0){
-      println("The" + mShip + "has sunk")
-      "Sunk"}
-    else
-      "Not Sunk"
+  def showStatus(): Unit ={
+    if (mStatus==0)
+      println("---YOU SUNK MY " + mShip.toUpperCase+"---")
   }
+
+  def getStatus(): Int=mStatus
 
   def getSize(): Int=mSize
 

@@ -4,7 +4,7 @@
 class Missile (var cords: String, var player: Player){
   var status=" - "//missile status is 0 for miss, 1 for hit
   var mCords=cords
-  var mPlayer = player
+  var mPlayer=player
 
   def setCords(cords: String): Unit = {
     mCords=cords
@@ -14,18 +14,6 @@ class Missile (var cords: String, var player: Player){
   this will need to be updated to check the 2D array
    */
 
-  def fireAt(game: Game): Unit ={
-    if (mCords=="3,1") {
-      println("Hit!")
-      player.addHit()
-      status = "  X "
-    }
-    else {
-      println("Miss!")
-      player.addMiss()
-      status = "  O "
-    }
-  }
   //will be used to return the result of the missile fired
   def getStatus(): String = status
 
@@ -37,7 +25,7 @@ class Missile (var cords: String, var player: Player){
   }
 
   def validateCords(): Boolean ={
-    if (player.logMissile(mCords)) {
+    if (mPlayer.logMissile(mCords)) {
       try {
         var iCords = new Array[String](2)
         iCords = mCords.split(",")
