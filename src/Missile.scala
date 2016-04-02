@@ -10,9 +10,6 @@ class Missile (var cords: String, var player: Player){
     mCords=cords
   }
 
-  /*will be used to determine what the result of the fired missile is
-  this will need to be updated to check the 2D array
-   */
 
   //will be used to return the result of the missile fired
   def getStatus(): String = status
@@ -30,7 +27,7 @@ class Missile (var cords: String, var player: Player){
         var iCords = new Array[String](2)
         iCords = mCords.split(",")
         var map = iCords.map(_.toInt)
-        if (map(0) >= 0 && map(0) <= 9 && map(1) >= 0 && map(1) <= 9)
+        if (map(0) >= 0 && map(0) <= 9 && map(1) >= 0 && map(1) <= 9 && map.length==2)
           return true
         else
           println("Coordinates are outside the game map")
