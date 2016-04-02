@@ -16,8 +16,10 @@ class Player (var name: String){
 
   def getMisses():Int=mMisses
 
+  def getTotalShots():Int=mHits+mMisses
+
   def getHitPercentage():Float={
-    (mHits/(mMisses+mHits).toFloat)*100
+    (mHits/getTotalShots().toFloat)*100
   }
 
   def addHit(): Unit ={

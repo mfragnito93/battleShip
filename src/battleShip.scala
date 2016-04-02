@@ -15,6 +15,8 @@ object battleShip {
     val missile = new Missile("x,x",player)
     val game = new Game(10, 10)
 
+    val leaderboard =new LeaderBoard
+
     var valid = true
     var missileCords = new String
 
@@ -35,12 +37,18 @@ object battleShip {
 //      printf("Firing missile to location %s...\n", missileCords)
       game.fire(missile)
     }
-    println("---GAME OVER---")
     game.show("Fleet")
+    println("-----GAME OVER-----")
     Thread.sleep(500)
+    println("----PLAYER STATS----")
     println("NAME: "+player.getName())
+    println("TOTAL SHOTS: "+player.getTotalShots())
     println("HITS: "+player.getHits())
     println("MISSES: "+player.getMisses())
-    println("HIT %: "+player.getHitPercentage())
+    printf("HIT PERC: %.2f",player.getHitPercentage())
+
+    leaderboard.update(player)
+    leaderboard.show()
   }
+
 }
