@@ -1,7 +1,7 @@
 /**
   * Created by mfrag on 3/30/2016.
   */
-import scala.collection.mutable.ArrayBuffer
+import java.awt.Toolkit
 
 class Boat (var ship: String, var size: Int) {
   var mShip=ship
@@ -22,8 +22,10 @@ class Boat (var ship: String, var size: Int) {
   }
 
   def showStatus(): Unit ={
-    if (mStatus==0)
-      println("---YOU SUNK MY " + mShip.toUpperCase+"---")
+    if (mStatus==0) {
+      Toolkit.getDefaultToolkit().beep()
+      println("---YOU SUNK MY " + mShip.toUpperCase + "---")
+    }
   }
 
   def getStatus(): Int=mStatus

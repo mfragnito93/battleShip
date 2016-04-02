@@ -22,8 +22,6 @@ object battleShip {
 
     game.setPlayer(player)
     game.createFleetMap()
-//    game.show("Fleet")
-
 
     while(game.status()>0) {
       game.show("GameBoard")
@@ -34,18 +32,17 @@ object battleShip {
         valid = missile.validateCords()
       } while (!valid)
 
-//      printf("Firing missile to location %s...\n", missileCords)
       game.fire(missile)
     }
     game.show("Fleet")
-    println("-----GAME OVER-----")
+    println("-----GAME OVER-----\n")
     Thread.sleep(500)
     println("----PLAYER STATS----")
     println("NAME: "+player.getName())
     println("TOTAL SHOTS: "+player.getTotalShots())
     println("HITS: "+player.getHits())
     println("MISSES: "+player.getMisses())
-    printf("HIT PERC: %.2f",player.getHitPercentage())
+    printf("HIT PERC: %.2f\n\n",player.getHitPercentage())
 
     leaderboard.update(player)
     leaderboard.show()
