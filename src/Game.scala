@@ -14,11 +14,11 @@ class Game (var rows: Int, var columns: Int) {
   var mAvPoints = ArrayBuffer[(Int, Int)]()
   val mRand = scala.util.Random
 
-  var mAircraftCarrier = new Boat("Aircraft Carrier", 5)
-  var mBattleship = new Boat("Battleship", 4)
-  var mSubmarine = new Boat("Submarine", 3)
-  var mCruiser = new Boat("Cruiser", 2)
-  var mDestroyer = new Boat("Destroyer", 1)
+  var mAircraftCarrier = new Boat("Aircraft Carrier", 6)
+  var mBattleship = new Boat("Battleship", 5)
+  var mSubmarine = new Boat("Submarine", 4)
+  var mCruiser = new Boat("Cruiser", 3)
+  var mDestroyer = new Boat("Destroyer", 2)
   val mFleet = Array(mAircraftCarrier, mBattleship, mSubmarine, mCruiser, mDestroyer)
 
   var mPlayer = new Player ("CHANGE ME")
