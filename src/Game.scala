@@ -83,15 +83,6 @@ class Game (var rows: Int, var columns: Int) {
     mGameBoard(cords(1))(cords(0)) = missile.getStatus()
   }
 
-  //****Come back
-  def setValue(i: Int, j: Int, value: Object): Unit = {
-    mGameBoard(i)(j) = value
-  }
-
-  def getValue(i: Int, j: Int): Object = {
-    mGameBoard(i)(j)
-  }
-
   /*Constructing the positions of the boat
   Algorithm:
   1 - Select a random point on the board for the boats starting point
@@ -169,6 +160,7 @@ class Game (var rows: Int, var columns: Int) {
     var cords = missile.getCords()
     var point = mFleetMap(cords(1))(cords(0))
 
+    //Checking if it is hit or miss - "NA"
     if (point=="NA") {
       mPlayer.addMiss()
       missile.status = "  O "
@@ -179,7 +171,7 @@ class Game (var rows: Int, var columns: Int) {
       point.asInstanceOf[Boat].showStatus()
       missile.status = "  X "
     }
-    updateGameBoard(missile)
+    updateGameBoard(missile) //updating current state of the game
   }
 
   //status is determined by summing the status of each boat -- 0 = GAME OVER
