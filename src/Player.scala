@@ -7,8 +7,7 @@ class Player (var name: String){
   var mName=name
   var mHits=0
   var mMisses=0
-  var mBoatsSank=0
-  var mHistory = ArrayBuffer[String]()
+  var mHistory = ArrayBuffer[String]() //shot history
 
   def getName():String=mName
 
@@ -30,10 +29,7 @@ class Player (var name: String){
     mMisses+=1
   }
 
-  def addSink(): Unit ={
-    mBoatsSank+=1
-  }
-
+  //Checks to make sure the coordinates haven't been used then adds them to the history
   def logMissile(cords : String): Boolean ={
     if(mHistory contains cords) {
       println("You have already fired a missile at this coordinate")
