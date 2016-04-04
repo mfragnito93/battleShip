@@ -1,5 +1,7 @@
 #Battleship
 I created a battleship game in efforts to learn scala and git essentials using intellij. This is also my first object oriented project.
+
+The game is played by running the battleShip.scala file.
 ###Understanding Classes
 The battleship game is made up of 5 simple classes, used for several functions related to the game.
 
