@@ -9,8 +9,7 @@ Holds all attributes and helper functions that a boat in battleship would need.
 
 The Boat is constructed as an array of tuples, where the tuples act as coordinates to the ships location.
 
-The Boat has properties such as size, status, location, ect. to allow for other classes to know where the Boat is and in what state the boat is in.
-
+The Boat has properties such as size, status, location, ect. to allow for other classes to know where the Boat is and in what state the boat is in. When a Boat is sunk the Player is immediately notified.
 ####Missile
 A Missile object takes desired attack coordinates from the user and ensures that the coordinates are valid.
 
