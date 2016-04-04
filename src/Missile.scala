@@ -3,6 +3,7 @@
   */
 class Missile (val cords: String, val player: Player){
   var status="  - "//missile status is O for miss, X for hit, - for no status
+  var valid = true
   private var mCords=cords
   private val mPlayer=player
 
@@ -12,6 +13,16 @@ class Missile (val cords: String, val player: Player){
 
   //used to return the result of the missile fired
   def getStatus(): String = status
+
+  def takeCords(): Unit ={
+    var missileCords = new String
+
+    printf(Console.BOLD+Console.YELLOW+"Enter the X,Y attack coordinates: ")//prompt for coordinates
+    missileCords = scala.io.StdIn.readLine()
+    //Using coordinates
+    setCords(missileCords)
+    valid=validateCords()//validating coordinates are good
+  }
 
   //returns the coordinates in integer form to update the array
   def getCords(): Array[Int] = {

@@ -5,21 +5,17 @@ import scala.io.StdIn.{readLine,readInt}
 
 object battleShip {
   def main(args:Array[String]): Unit ={
+    val game = new Game(10, 10)
+    val leaderBoard =new LeaderBoard
+
     //Pre-Game Sequence
     println(Console.BOLD+Console.RED+"--------WELCOME TO BATTLESHIP--------")
     Thread.sleep(500)
     //Initializing game
     printf("Enter name to begin: ")
-
     val name = scala.io.StdIn.readLine()
     val player = new Player(name)
     val missile = new Missile("x,x",player)
-    val game = new Game(10, 10)
-
-    val leaderBoard =new LeaderBoard
-
-    var valid = true
-    var missileCords = new String
 
     game.setPlayer(player)
     game.createFleetMap()
@@ -29,28 +25,19 @@ object battleShip {
       game.show("GameBoard")
       //Coordinate entry until valid coordinates are entered
       do {
-        //Could make this one function of the missile class
-        //Taking coordinates
-        printf(Console.BOLD+Console.YELLOW+"Enter the X,Y attack coordinates: ")
-        missileCords = scala.io.StdIn.readLine()
-        //Using coordinates
-        missile.setCords(missileCords)
-        valid = missile.validateCords() //Checks if coordinates are valid
-      } while (!valid)
-
+        missile.takeCords() //prompts user for coordinates
+      } while (!missile.valid)
       game.fire(missile)
     }
 
     //End of game sequence - Stats and LeaderBoard
     game.show("Fleet")
+
     println("-----GAME OVER-----\n")
     Thread.sleep(500)
+
     println("----PLAYER STATS----")
-    println("NAME: "+player.getName())
-    println("TOTAL SHOTS: "+player.getTotalShots())
-    println("HITS: "+player.getHits())
-    println("MISSES: "+player.getMisses())
-    printf("HIT PERC: %.2f\n\n",player.getHitPercentage())
+    player.showStats()
 
     leaderBoard.update(player)
   }

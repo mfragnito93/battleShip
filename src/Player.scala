@@ -41,6 +41,14 @@ class Player (var name: String){
     }
   }
 
+  def showStats(): Unit ={
+    println("NAME: "+ getName())
+    println("TOTAL SHOTS: "+ getTotalShots())
+    println("HITS: "+ getHits())
+    println("MISSES: "+ getMisses())
+    printf("HIT PERC: %.2f\n\n",getHitPercentage())
+  }
+
 
 
 }
