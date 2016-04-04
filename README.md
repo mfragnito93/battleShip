@@ -22,7 +22,7 @@ A Player object holds all attributes related to the user. It holds the users nam
 A Game class posses 3 two-dimensional arrays.
 - GameBoard: Maintains the current state of the game ie what is displayed to the user as he or she takes shots (hits or misses)
 - FleetMap: Maintains the location of the Boat objects on the map; ie each point on this map is a Boat object or "NA" if there is no boat.
-- FleetDisplay: Easy way to read the FleetMap with abbreviated strings for each boat. This is only shown at the end of the game to show the users exactly whereeach boat was one more time.
+- FleetDisplay: Easy way to read the FleetMap with abbreviated strings for each boat. This is only shown at the end of the game to show the users exactly where each boat was one more time.
 
 The game class initializes the game by randomly assorting a fleet of Boats into the FleetMap.
 
