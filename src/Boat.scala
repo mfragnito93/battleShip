@@ -4,12 +4,12 @@
 import java.awt.Toolkit
 
 class Boat (var ship: String, var size: Int) {
-  var mShip=ship
-  var mSize=size
-  var mStatus = mSize
+  private val mShip=ship
+  private val mSize=size
+  private var mStatus = mSize
   private var mLocation=new Array[(Int,Int)](mSize)
 
-  var mShort=ship.charAt(0)+size.toString //ie "B5" for clean display post game
+  private val mShort=ship.charAt(0)+size.toString //ie "B5" for clean display post game
 
   def getName():String=mShip
 

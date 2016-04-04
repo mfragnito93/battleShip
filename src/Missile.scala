@@ -1,10 +1,10 @@
 /**
   * Created by mfrag on 3/28/2016.
   */
-class Missile (var cords: String, var player: Player){
+class Missile (val cords: String, val player: Player){
   var status="  - "//missile status is O for miss, X for hit, - for no status
-  var mCords=cords
-  var mPlayer=player
+  private var mCords=cords
+  private val mPlayer=player
 
   def setCords(cords: String): Unit = {
     mCords=cords

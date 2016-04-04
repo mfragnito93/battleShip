@@ -3,36 +3,33 @@
   */
 import scala.collection.mutable.ArrayBuffer
 
-class Game (var rows: Int, var columns: Int) {
-  var mRows = rows
-  var mCols = columns
-  var mGameBoard = Array.fill[Object](mRows, mCols)("  - ") //Holds the player's hits and misses
+class Game (val rows: Int, val columns: Int) {
+  private val mRows = rows
+  private val mCols = columns
+  private val mGameBoard = Array.fill[Object](mRows, mCols)("  - ") //Holds the player's hits and misses
 
 
-  var mFleetMap = Array.fill[Object](mRows, mCols)("NA") //FleetMap is used to hold the boat objects, backend checking
-  var mFleetDisplay = Array.fill[Object](mRows, mCols)("  - ") //Copy of fleet map in a display friendly manner
-  var mAvPoints = ArrayBuffer[(Int, Int)]() //Used to determine available points left on the board
-  val mRand = scala.util.Random //random number generator class
+  private val mFleetMap = Array.fill[Object](mRows, mCols)("NA") //FleetMap is used to hold the boat objects, backend checking
+  private val mFleetDisplay = Array.fill[Object](mRows, mCols)("  - ") //Copy of fleet map in a display friendly manner
+  private var mAvPoints = ArrayBuffer[(Int, Int)]() //Used to determine available points left on the board
+  private val mRand = scala.util.Random //random number generator class
 
   //Defining boats that will be used in the game
-  var mAircraftCarrier = new Boat("Aircraft Carrier", 6)
-  var mBattleship = new Boat("Battleship", 5)
-  var mSubmarine = new Boat("Submarine", 4)
-  var mCruiser = new Boat("Cruiser", 3)
-  var mDestroyer = new Boat("Destroyer", 2)
-  val mFleet = Array(mAircraftCarrier, mBattleship, mSubmarine, mCruiser, mDestroyer)
+  //add more ships for more scalability down the road when you can create your own ships
+  var S1 = new Boat("Aircraft Carrier", 6)
+  var S2 = new Boat("Battleship", 5)
+  var S3 = new Boat("Submarine", 4)
+  var S4 = new Boat("Cruiser", 3)
+  var S5 = new Boat("Destroyer", 2)
+  val mFleet = Array(S1,S2,S3,S4,S5)
 
-  var mPlayer = new Player ("CHANGE ME")
+  private var mPlayer = new Player ("CHANGE ME")
 
   //Initializing available points to all points on the board
   for (i <- 0 until mRows) {
     for (j <- 0 until mCols) {
       mAvPoints += i -> j //adding the tuple to the available points
     }
-  }
-
-  def getGameBoard(): Array[Array[Object]] = {
-    mGameBoard
   }
 
   //Used to display either the fleet display or the current state of the game
@@ -77,9 +74,10 @@ class Game (var rows: Int, var columns: Int) {
     }
     println(Console.BOLD+Console.YELLOW+"-Y-")
   }
+
   //Changes the value on the game state 2D array to the status of the missile
   def updateGameBoard(missile: Missile): Unit = {
-    var cords = missile.getCords()
+    val cords = missile.getCords()
     mGameBoard(cords(1))(cords(0)) = missile.getStatus()
   }
 
@@ -157,8 +155,8 @@ class Game (var rows: Int, var columns: Int) {
 
   //checking if missiles coordinates hit a boat
   def fire(missile: Missile): Unit ={
-    var cords = missile.getCords()
-    var point = mFleetMap(cords(1))(cords(0))
+    val cords = missile.getCords()
+    val point = mFleetMap(cords(1))(cords(0))
 
     //Checking if it is hit or miss - "NA"
     if (point=="NA") {

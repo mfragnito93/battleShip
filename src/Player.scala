@@ -4,10 +4,10 @@
 import scala.collection.mutable.ArrayBuffer
 
 class Player (var name: String){
-  var mName=name
-  var mHits=0
-  var mMisses=0
-  var mHistory = ArrayBuffer[String]() //shot history
+  private val mName=name
+  private var mHits=0
+  private var mMisses=0
+  private var mHistory = ArrayBuffer[String]() //shot history
 
   def getName():String=mName
 
