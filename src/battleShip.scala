@@ -53,7 +53,5 @@ object battleShip {
     printf("HIT PERC: %.2f\n\n",player.getHitPercentage())
 
     leaderBoard.update(player)
-    leaderBoard.show()
   }
-
 }

@@ -46,6 +46,7 @@ class LeaderBoard {
     mLeaderBoard+=((player.getName(),player.getTotalShots())) //Adding player score
     mLeaderBoard=mLeaderBoard.sortBy(_._2).take(10) //taking only top 10
     save() //saving results
+    show() //show results
   }
 
 
