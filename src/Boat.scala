@@ -9,7 +9,7 @@ class Boat (var ship: String, var size: Int) {
   var mStatus = mSize
   private var mLocation=new Array[(Int,Int)](mSize)
 
-  var mShort=ship.charAt(0)+size.toString
+  var mShort=ship.charAt(0)+size.toString //ie "B5" for clean display post game
 
   def getName():String=mShip
 
@@ -24,7 +24,7 @@ class Boat (var ship: String, var size: Int) {
   def showStatus(): Unit ={
     if (mStatus==0) {
       Toolkit.getDefaultToolkit().beep()
-      println("---YOU SUNK MY " + mShip.toUpperCase + "---")
+      println("---YOU SUNK MY " + mShip.toUpperCase + "---") //status is only displayed if the boat is sunk
     }
   }
 
