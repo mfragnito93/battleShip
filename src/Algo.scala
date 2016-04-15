@@ -5,6 +5,9 @@ import scala.collection.mutable.ArrayBuffer
 
 class Algo {
 
+  private var mCols=0
+  private var mRows=0
+
   //Split the game map into arrays for effective heat map calculations
   def split(arrayList: ArrayBuffer[ArrayBuffer[Int]], subList: Int, value: Int): ArrayBuffer[ArrayBuffer[Int]] = {
 
@@ -52,13 +55,19 @@ class Algo {
   }
 
   def sumMatrix(m1: Array[Array[Int]],m2: Array[Array[Int]]): Array[Array[Int]]={
-    for (i<-m1.indices;j<-m1(0).indices){
-      m1(i)(j)+=m2(i)(j)
+    val cols=m1(0).length
+    val rows=m1.length
+    val m0=Array.ofDim[Int](cols,rows)
+
+    for (i<-m0.indices;j<-m0(0).indices){
+      m0(i)(j)=m1(i)(j)+m2(i)(j)
     }
-    m1
+    m0
   }
 
   def constructMap(rows: Int,cols: Int): Map[Int,ArrayBuffer[ArrayBuffer[Int]]]={
+    mRows=rows
+    mCols=cols
     var map = Map[Int,ArrayBuffer[ArrayBuffer[Int]]]()
     var tmp = ArrayBuffer[Int]()
     for(i<-0 until cols) {
@@ -69,4 +78,69 @@ class Algo {
     }
     map
   }
+
+  def constructVectorMatrix(rows: Int, cols:Int): ArrayBuffer[ArrayBuffer[Int]]={
+    var row=ArrayBuffer[Int]()
+    var vectorMatrix=ArrayBuffer[ArrayBuffer[Int]]()
+    for(i<-0 until cols) {
+      row += i
+    }
+    for(j<-0 until rows){
+      vectorMatrix+=row
+    }
+    vectorMatrix
+  }
+
+  def zeroMatrix(cols:Int,rows:Int):Array[Array[Int]]={
+    val matrix=Array.ofDim[Int](cols,rows)
+    for (i<-0 until rows;j<-0 until cols){
+      matrix(i)(j)=0
+    }
+    matrix
+  }
+
+  def updateHeatMap(heatMap: Array[Array[Int]], vectorRow: ArrayBuffer[ArrayBuffer[Int]], boatSize: Int, row: Int):Array[Array[Int]]={
+    var vectorSize=0
+
+    for(j<-heatMap(row).indices){
+      heatMap(row)(j)=0
+    }
+    for(vector<-vectorRow){
+      vectorSize=vector.length
+      for(j<-0 until vectorSize){
+        //calculation heat here
+        heatMap(row)(vector(j)) = findHeat(j,vectorSize,boatSize)//replace with heat calculation
+      }
+    }
+    heatMap
+  }
+
+  def constructHeatMap(vectorMap: Map[Int,ArrayBuffer[ArrayBuffer[Int]]], boatSize: Int):Array[Array[Int]]={
+    val heatMap=Array.fill[Int](mCols,mRows)(0) //need the columns and rows
+    var vectorSize=0
+
+    for(i<-vectorMap.keys){
+      for(vector<-vectorMap(i)){
+        vectorSize=vector.length
+        for (j<-0 until vectorSize)
+        {
+          heatMap(i)(vector(j)) = findHeat(j,vectorSize,boatSize)
+        }
+      }
+    }
+    heatMap
+  }
+
+  def findHeat(index: Int, vectorSize:Int, boatSize:Int): Int={
+    var heat=0
+    //heat algo here
+    if (index<vectorSize/2.0){
+      heat=math.min(index+1,math.max(0,math.min(1+vectorSize-boatSize,boatSize)))
+    }
+    else{
+      heat=math.min(vectorSize-index,math.max(0,math.min(1+vectorSize-boatSize,boatSize)))
+    }
+    heat
+  }
+
 }
